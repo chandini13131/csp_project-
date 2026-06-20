@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Home</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Aarogya Mithra</h1>
+
+<nav>
+
+<a href="home.html">Home</a>
+
+<a href="bmi.html">BMI Calculator</a>
+
+<a href="exercise.html">Exercise</a>
+
+<a href="hospital.html">Hospitals</a>
+
+<a href="contact.html">Emergency</a>
+
+</nav>
+
+</header>
+
+<section>
+    <div class="hero">
+<h2>🏥 Welcome to Aarogya Mithra</h2>
+<p>Your Personal Health & Fitness Companion</p>
+</div>
+
+
+
+<div class="card">
+
+<h3>User Details</h3>
+
+<p><b>Name:</b>
+<span id="showName"></span></p>
+
+<p><b>Email:</b>
+<span id="showEmail"></span></p>
+
+<p><b>Phone:</b>
+<span id="showPhone"></span></p>
+
+<p><b>Age:</b>
+<span id="showAge"></span></p>
+
+<p><b>DOB:</b>
+<span id="showDob"></span></p>
+
+<p><b>State:</b>
+<span id="showState"></span></p>
+
+<p><b>Address:</b>
+<span id="showAddress"></span></p>
+
+</div>
+
+<div class="card">
+
+<h3>About Aarogya Mithra</h3>
+
+<p>
+Aarogya Mithra helps users maintain
+healthy lifestyles through BMI tracking,
+exercise reminders, nearby hospitals,
+and emergency support services.
+</p>
+
+</div>
+
+</section>
+
+<script>
+
+document.getElementById("showName")
+.innerHTML=localStorage.getItem("name");
+
+document.getElementById("showEmail")
+.innerHTML=localStorage.getItem("email");
+
+document.getElementById("showPhone")
+.innerHTML=localStorage.getItem("phone");
+
+document.getElementById("showAge")
+.innerHTML=localStorage.getItem("age");
+
+document.getElementById("showDob")
+.innerHTML=localStorage.getItem("dob");
+
+document.getElementById("showState")
+.innerHTML=localStorage.getItem("state");
+
+document.getElementById("showAddress")
+.innerHTML=localStorage.getItem("address");
+
+</script>
+
+</body>
+</html>

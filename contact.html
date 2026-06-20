@@ -1,0 +1,333 @@
+<<!DOCTYPE html>
+<html lang="en">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>Smart Emergency Contacts</title>
+
+<style>
+
+body{
+    margin:0;
+    font-family:Arial;
+    background:linear-gradient(to right,#caf0f8,#90e0ef);
+}
+
+.header{
+    background:#0077b6;
+    color:white;
+    text-align:center;
+    padding:25px;
+    font-size:35px;
+    font-weight:bold;
+    box-shadow:0px 3px 10px gray;
+}
+
+.searchbox{
+    text-align:center;
+    margin-top:30px;
+}
+
+input{
+    width:320px;
+    padding:14px;
+    border-radius:12px;
+    border:none;
+    font-size:16px;
+    box-shadow:0px 0px 8px gray;
+}
+
+button{
+    padding:14px 22px;
+    background:#0077b6;
+    color:white;
+    border:none;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:16px;
+    margin-left:10px;
+}
+
+button:hover{
+    background:#023e8a;
+}
+
+.sample{
+    margin-top:15px;
+    color:#333;
+    font-size:17px;
+}
+
+#result{
+    margin-top:40px;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    gap:25px;
+}
+
+.card{
+    background:white;
+    width:320px;
+    padding:25px;
+    border-radius:25px;
+    text-align:center;
+    box-shadow:0px 0px 15px gray;
+    transition:0.3s;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+}
+
+.card img{
+    width:100%;
+    height:180px;
+    border-radius:20px;
+}
+
+.title{
+    font-size:28px;
+    color:#0077b6;
+    font-weight:bold;
+    margin-top:15px;
+}
+
+.number{
+    font-size:34px;
+    color:red;
+    font-weight:bold;
+    margin-top:10px;
+}
+
+.desc{
+    margin-top:15px;
+    color:#555;
+    line-height:1.5;
+}
+
+.callbtn{
+    margin-top:20px;
+    background:green;
+    color:white;
+    padding:12px 20px;
+    border-radius:12px;
+    text-decoration:none;
+    display:inline-block;
+    font-size:18px;
+}
+
+.callbtn:hover{
+    background:#006400;
+}
+
+.footer{
+    background:#0077b6;
+    color:white;
+    text-align:center;
+    padding:20px;
+    font-size:18px;
+    margin-top:40px;
+}
+
+.heading{
+    text-align:center;
+    margin-top:40px;
+    color:#0077b6;
+    font-size:30px;
+    font-weight:bold;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="header">
+🚨 Smart Emergency Contacts
+</div>
+
+<div class="searchbox">
+
+<input
+type="text"
+id="search"
+placeholder="🔍 Search emergency service">
+
+<button onclick="searchService()">
+Search
+</button>
+
+<div class="sample">
+
+Try:
+ambulance, police, fire,
+women, child, cyber, gas
+
+</div>
+
+</div>
+
+<div class="heading">
+📞 Important Emergency Services
+</div>
+
+<div id="result"></div>
+
+<div class="footer">
+💙 Stay Safe | Smart Health Awareness System
+</div>
+
+<script>
+
+let services = [
+
+{
+name:"Ambulance",
+number:"108",
+desc:"Medical emergency and ambulance service",
+image:"https://images.unsplash.com/photo-1587745416684-47953f16f02f"
+},
+
+{
+name:"Police",
+number:"100",
+desc:"Police emergency protection and support",
+image:"https://images.unsplash.com/photo-1517841905240-472988babdf9"
+},
+
+{
+name:"Fire Service",
+number:"101",
+desc:"Fire accident and rescue emergency service",
+image:"https://images.unsplash.com/photo-1513828583688-c52646db42da"
+},
+
+{
+name:"Women Helpline",
+number:"1091",
+desc:"Women safety and protection support",
+image:"https://images.unsplash.com/photo-1494790108377-be9c29b29330"
+},
+
+{
+name:"Child Helpline",
+number:"1098",
+desc:"Emergency support for children",
+image:"https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9"
+},
+
+{
+name:"Cyber Crime",
+number:"1930",
+desc:"Online fraud and cyber crime help",
+image:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3"
+},
+
+{
+name:"Gas Leakage",
+number:"1906",
+desc:"Gas leakage emergency support",
+image:"https://images.unsplash.com/photo-1520607162513-77705c0f0d4a"
+}
+
+]
+
+
+
+function displayServices(data)
+{
+    let output = ""
+
+
+
+    for(let i=0;i<data.length;i++)
+    {
+        output += `
+
+        <div class="card">
+
+        <img src="${data[i].image}">
+
+        <div class="title">
+        ${data[i].name}
+        </div>
+
+        <div class="number">
+        ${data[i].number}
+        </div>
+
+        <div class="desc">
+        ${data[i].desc}
+        </div>
+
+        <a
+        href="tel:${data[i].number}"
+        class="callbtn">
+
+        📞 Call Now
+
+        </a>
+
+        </div>
+
+        `
+    }
+
+
+
+    document.getElementById("result").innerHTML =
+    output
+}
+
+
+
+displayServices(services)
+
+
+
+function searchService()
+{
+    let search =
+    document.getElementById("search")
+    .value.toLowerCase()
+
+    let filtered = []
+
+
+
+    for(let i=0;i<services.length;i++)
+    {
+        if(
+        services[i].name
+        .toLowerCase()
+        .includes(search)
+        )
+        {
+            filtered.push(services[i])
+        }
+    }
+
+
+
+    displayServices(filtered)
+
+
+
+    let speech =
+    new SpeechSynthesisUtterance(
+    "Emergency contact search completed"
+    )
+
+    speechSynthesis.speak(speech)
+
+}
+
+</script>
+
+</body>
+</html>

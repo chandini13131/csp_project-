@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Login</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Aarogya Mithra</h1>
+
+</header>
+
+<section class="form-section">
+
+<h2>Welcome to Aarogya Mithra</h2>
+<p style="text-align:center;color:#555;margin-bottom:20px;">
+Create your health profile and start your wellness journey
+</p>
+
+<form id="loginForm">
+
+<input type="text" id="name"
+placeholder="Enter Name" required>
+
+<input type="email" id="email"
+placeholder="Enter Email">
+
+<input type="tel" id="phone"
+placeholder="Enter Phone Number" required>
+
+<input type="number" id="age"
+placeholder="Enter Age" required>
+
+<label>Date of Birth</label>
+
+<input type="date" id="dob" required>
+
+<select id="state" required>
+
+<option value="">Select State</option>
+
+<option>Andhra Pradesh</option>
+<option>Arunachal Pradesh</option>
+<option>Assam</option>
+<option>Bihar</option>
+<option>Chhattisgarh</option>
+<option>Goa</option>
+<option>Gujarat</option>
+<option>Haryana</option>
+<option>Himachal Pradesh</option>
+<option>Jharkhand</option>
+<option>Karnataka</option>
+<option>Kerala</option>
+<option>Madhya Pradesh</option>
+<option>Maharashtra</option>
+<option>Manipur</option>
+<option>Meghalaya</option>
+<option>Mizoram</option>
+<option>Nagaland</option>
+<option>Odisha</option>
+<option>Punjab</option>
+<option>Rajasthan</option>
+<option>Sikkim</option>
+<option>Tamil Nadu</option>
+<option>Telangana</option>
+<option>Tripura</option>
+<option>Uttar Pradesh</option>
+<option>Uttarakhand</option>
+<option>West Bengal</option>
+
+<option>Andaman and Nicobar Islands</option>
+<option>Chandigarh</option>
+<option>Dadra and Nagar Haveli and Daman and Diu</option>
+<option>Delhi</option>
+<option>Jammu and Kashmir</option>
+<option>Ladakh</option>
+<option>Lakshadweep</option>
+<option>Puducherry</option>
+
+</select>
+
+<textarea id="address"
+placeholder="Enter Address"
+required></textarea>
+
+<button type="submit">
+
+Login
+
+</button>
+
+</form>
+
+</section>
+
+<script>
+
+document.getElementById("loginForm")
+.addEventListener("submit", function(event){
+
+event.preventDefault();
+
+localStorage.setItem("name",
+document.getElementById("name").value);
+
+localStorage.setItem("email",
+document.getElementById("email").value);
+
+localStorage.setItem("phone",
+document.getElementById("phone").value);
+
+localStorage.setItem("age",
+document.getElementById("age").value);
+
+localStorage.setItem("dob",
+document.getElementById("dob").value);
+
+localStorage.setItem("state",
+document.getElementById("state").value);
+
+localStorage.setItem("address",
+document.getElementById("address").value);
+
+window.location.href="home.html";
+
+});
+
+</script>
+
+</body>
+</html>

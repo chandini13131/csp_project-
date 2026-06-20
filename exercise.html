@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Arogya Mithra Exercise Guide</title>
+
+<style>
+body{
+font-family:Arial,sans-serif;
+background:#f4f7fb;
+text-align:center;
+}
+
+h1{
+color:#2e8b57;
+}
+
+select{
+padding:10px;
+font-size:16px;
+margin:20px;
+}
+
+#cards{
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+gap:20px;
+}
+
+.card{
+width:250px;
+background:white;
+border-radius:15px;
+overflow:hidden;
+box-shadow:0 4px 10px rgba(0,0,0,0.2);
+cursor:pointer;
+transition:0.3s;
+}
+
+.card:hover{
+transform:scale(1.05);
+}
+
+.card img{
+width:100%;
+height:180px;
+object-fit:cover;
+}
+
+.card h3{
+padding:10px;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.7);
+}
+
+.popup{
+background:white;
+width:80%;
+max-width:500px;
+margin:60px auto;
+padding:20px;
+border-radius:15px;
+text-align:left;
+}
+
+button{
+padding:8px 15px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🏃 Arogya Mithra Exercise Guide</h1>
+
+<select id="goal" onchange="showExercises()">
+<option value="">Select Goal</option>
+<option value="weightloss">🔥 Weight Loss</option>
+<option value="muscle">💪 Muscle Building</option>
+<option value="heart">❤️ Heart Health</option>
+<option value="yoga">🧘 Yoga</option>
+<option value="stress">🧘 Stress Relief</option>
+<option value="student">🎓 Student Fitness</option>
+</select>
+
+<div id="cards"></div>
+
+<div class="modal" id="modal">
+<div class="popup">
+<button onclick="closeModal()">Close</button>
+<h2 id="title"></h2>
+<p id="benefits"></p>
+<p id="limitations"></p>
+<p id="duration"></p>
+</div>
+</div>
+
+<script>
+
+const data = {
+
+muscle:[
+{
+name:"Push Ups",
+img:"https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=800",
+benefits:"Builds chest, shoulders and arms.",
+limitations:"Avoid if wrist or shoulder injury.",
+duration:"5-15 reps"
+},
+{
+name:"Squats",
+img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800",
+benefits:"Strengthens legs and glutes.",
+limitations:"Avoid excessive strain on knees.",
+duration:"10-15 reps"
+},
+{
+name:"Plank",
+img:"https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800",
+benefits:"Strengthens core muscles.",
+limitations:"Avoid if severe back pain.",
+duration:"20-30 seconds"
+},
+{
+name:"Lunges",
+img:"https://images.unsplash.com/photo-1517838277536-f5f99be501cd?w=800",
+benefits:"Improves balance and leg strength.",
+limitations:"Be careful with knee injuries.",
+duration:"10 reps each leg"
+}
+],
+
+weightloss:[
+{
+name:"Walking",
+img:"https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800",
+benefits:"Burns calories and improves stamina.",
+limitations:"Wear proper footwear.",
+duration:"30 minutes"
+},
+{
+name:"Jogging",
+img:"https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800",
+benefits:"Improves heart health.",
+limitations:"Avoid if severe joint pain.",
+duration:"15-20 minutes"
+},
+{
+name:"Cycling",
+img:"https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=800",
+benefits:"Burns calories and strengthens legs.",
+limitations:"Use proper posture.",
+duration:"20 minutes"
+},
+{
+name:"Jumping Jacks",
+img:"https://images.unsplash.com/photo-1518611012118-696072aa579a?w=800",
+benefits:"Full body workout.",
+limitations:"Avoid if ankle injury.",
+duration:"20 reps"
+}
+],
+
+heart:[
+{
+name:"Walking",
+img:"https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800",
+benefits:"Improves circulation.",
+limitations:"Do not overexert.",
+duration:"30 minutes"
+},
+{
+name:"Cycling",
+img:"https://images.unsplash.com/photo-1507035895480-2b3156c31fc8?w=800",
+benefits:"Good cardiovascular exercise.",
+limitations:"Avoid if severe knee pain.",
+duration:"20 minutes"
+},
+{
+name:"Jogging",
+img:"https://images.unsplash.com/photo-1461896836934-ffe607ba8211?w=800",
+benefits:"Strengthens heart.",
+limitations:"Start slowly.",
+duration:"15 minutes"
+},
+{
+name:"Stair Climbing",
+img:"https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=800",
+benefits:"Improves endurance.",
+limitations:"Be careful if you have knee issues.",
+duration:"10 minutes"
+}
+],
+
+yoga:[
+{
+name:"Tadasana (Mountain Pose)",
+img:"https://images.pexels.com/photos/317157/pexels-photo-317157.jpeg",
+benefits:"Improves posture, balance and body awareness.",
+limitations:"Use support if balance is poor.",
+duration:"30-60 seconds"
+},
+{
+name:"Vrikshasana (Tree Pose)",
+img:"https://images.pexels.com/photos/3822622/pexels-photo-3822622.jpeg",
+benefits:"Improves concentration and balance.",
+limitations:"Avoid forcing the raised leg position.",
+duration:"30-60 seconds"
+},
+{
+name:"Bhujangasana (Cobra Pose)",
+img:"https://images.pexels.com/photos/4056535/pexels-photo-4056535.jpeg",
+benefits:"Strengthens back muscles and improves flexibility.",
+limitations:"Avoid if you have severe back pain.",
+duration:"15-30 seconds"
+},
+{
+name:"Balasana (Child's Pose)",
+img:"https://images.pexels.com/photos/1812964/pexels-photo-1812964.jpeg",
+benefits:"Relaxes the mind and stretches the back.",
+limitations:"May not be comfortable for some knee conditions.",
+duration:"30-60 seconds"
+}
+],
+
+stress:[
+{
+name:"Meditation",
+img:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800",
+benefits:"Reduces stress.",
+limitations:"Practice in quiet place.",
+duration:"10 minutes"
+},
+{
+name:"Deep Breathing",
+img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800",
+benefits:"Calms mind.",
+limitations:"Do not force breathing.",
+duration:"5 minutes"
+},
+{
+name:"Yoga",
+img:"https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=800",
+benefits:"Relaxes muscles.",
+limitations:"Move gently.",
+duration:"15 minutes"
+},
+{
+name:"Evening Walk",
+img:"https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800",
+benefits:"Improves mood.",
+limitations:"Stay hydrated.",
+duration:"20 minutes"
+}
+],
+
+student:[
+{
+name:"Neck Stretch",
+img:"https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800",
+benefits:"Reduces neck stiffness.",
+limitations:"Do not overstretch.",
+duration:"2 minutes"
+},
+{
+name:"Wrist Stretch",
+img:"https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800",
+benefits:"Relieves wrist strain.",
+limitations:"Gentle movements only.",
+duration:"1 minute"
+},
+{
+name:"Eye Exercise",
+img:"https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800",
+benefits:"Reduces eye strain.",
+limitations:"Take regular breaks.",
+duration:"2 minutes"
+},
+{
+name:"Short Walk",
+img:"https://images.unsplash.com/photo-1476480862126-209bfaa8edc8?w=800",
+benefits:"Refreshes mind.",
+limitations:"Avoid distractions.",
+duration:"10 minutes"
+}
+]
+};
+
+function showExercises(){
+
+let goal=document.getElementById("goal").value;
+let cards=document.getElementById("cards");
+
+cards.innerHTML="";
+
+if(!goal) return;
+
+data[goal].forEach(ex=>{
+
+cards.innerHTML+=`
+<div class="card" onclick='showDetails(${JSON.stringify(ex)})'>
+<img src="${ex.img}">
+<h3>${ex.name}</h3>
+</div>
+`;
+
+});
+}
+
+function showDetails(ex){
+
+document.getElementById("title").innerHTML=ex.name;
+document.getElementById("benefits").innerHTML="<b>Benefits:</b> "+ex.benefits;
+document.getElementById("limitations").innerHTML="<b>Limitations:</b> "+ex.limitations;
+document.getElementById("duration").innerHTML="<b>Recommended:</b> "+ex.duration;
+
+document.getElementById("modal").style.display="block";
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
+}
+
+</script>
+
+</body>
+</html>

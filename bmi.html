@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>Advanced BMI Calculator</title>
+
+<link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+<header>
+
+<h1>Aarogya Mithra</h1>
+
+<nav>
+
+<a href="home.html">Home</a>
+
+<a href="bmi.html">BMI Calculator</a>
+
+<a href="exercise.html">Exercise</a>
+
+<a href="hospital.html">Hospitals</a>
+
+<a href="contact.html">Emergency</a>
+
+</nav>
+
+</header>
+
+<section class="bmi-section">
+
+<h2>Health & BMI Calculator</h2>
+
+<p>
+Check your Body Mass Index and get personalized health suggestions.
+</p>
+
+<img class="main-image"
+src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438">
+
+<div class="bmi-box">
+
+<input type="number"
+id="height"
+placeholder="Enter Height in meters">
+
+<input type="number"
+id="weight"
+placeholder="Enter Weight in kg">
+
+<button onclick="calculateBMI()">
+
+Calculate BMI
+
+</button>
+
+</div>
+
+<div class="result-card">
+
+<h2 id="result"></h2>
+
+<h3 id="status"></h3>
+
+<img id="bmiImage">
+
+<h3>Health Suggestions</h3>
+
+<ul id="tips"></ul>
+
+</div>
+
+</section>
+
+<script src="script.js"></script>
+
+</body>
+</html>
